@@ -14,6 +14,7 @@ class PostAdapter(
 
     interface OnAddCommentListener {
         fun onAddCommentClicked(postId: Int)
+        fun onViewCommentsClicked(postId: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostVH {
@@ -29,6 +30,9 @@ class PostAdapter(
             b.tvTitle.text = post.title
             b.tvBody.text = post.body
             b.btnAddComment.setOnClickListener { listener.onAddCommentClicked(post.id) }
+            b.btnViewComments.setOnClickListener {
+                listener.onViewCommentsClicked(post.id)
+            }
         }
     }
 

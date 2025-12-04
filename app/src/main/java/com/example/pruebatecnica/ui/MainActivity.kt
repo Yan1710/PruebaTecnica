@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity(), PostAdapter.OnAddCommentListener {
     override fun onAddCommentClicked(postId: Int) {
         showAddCommentDialog(postId)
     }
+    override fun onViewCommentsClicked(postId: Int) {
+        showCommentsDialog(postId)
+    }
 
     private fun showAddCommentDialog(postId: Int) {
         val view = LayoutInflater.from(this).inflate(com.example.pruebatecnica.R.layout.dialog_add_comment, null)
@@ -55,4 +58,24 @@ class MainActivity : AppCompatActivity(), PostAdapter.OnAddCommentListener {
             .setNegativeButton("Cancelar", null)
             .show()
     }
+
+    private fun showCommentsDialog(postId: Int) {
+        // Observamos los comentarios de ese post
+        commentViewModel.getComments(postId).observe(this) { comments ->
+            val msg = if (comments.isEmpty()) {
+                "No hay comentarios para este post"
+            } else {
+                comments.joinToString("\n\n") { c ->
+                    "- ${c.author}: ${c.comment}"
+                }
+            }
+
+            AlertDialog.Builder(this)
+                .setTitle("Comentarios")
+                .setMessage(msg)
+                .setPositiveButton("Cerrar", null)
+                .show()
+        }
+    }
 }
+
