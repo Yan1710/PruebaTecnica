@@ -14,7 +14,6 @@
     <EditText
         android:id="@+id/etComment"
         android:hint="Comentario"
-        android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
