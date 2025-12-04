@@ -1,8 +1,7 @@
-package com.example.pruebatecnica.data.room.entity
+package com.example.pruebatecnica.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
@@ -14,12 +13,11 @@ import androidx.room.PrimaryKey
             childColumns = ["postId"],
             onDelete = ForeignKey.CASCADE
         )
-    ],
-    indices = [Index("postId")]
+    ]
 )
 data class CommentEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val postId: Int,
-    val text: String
+    val comment: String,
+    val author: String
 )
-

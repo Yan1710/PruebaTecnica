@@ -7,6 +7,11 @@ plugins {
 }
 
 android {
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     namespace = "com.example.pruebatecnica"
     compileSdk {
         version = release(36)
